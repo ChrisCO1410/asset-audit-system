@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: asset-audit-db
+    environment:
+      POSTGRES_DB: asset_audit
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: .
+    container_name: asset-audit-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/asset_audit
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgrespassword
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ../asset-audit-ui
+    container_name: asset-audit-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
