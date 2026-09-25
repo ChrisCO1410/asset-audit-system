@@ -34,5 +34,5 @@ An enterprise-grade, full-stack compliance and asset tracking dashboard engineer
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/your-username/asset-audit-system.git](https://github.com/your-username/asset-audit-system.git)
+   git clone https://github.com/ChrisCO1410/asset-audit-system.git
    cd asset-audit-system
